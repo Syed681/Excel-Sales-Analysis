@@ -1,0 +1,2 @@
+Youtube video mentioned: https://www.youtube.com/watch?v=M8ra1n2oiTY&t=461s
+Prompt in youtube to get the guided videos: "how to create nice readme file for repository github"
