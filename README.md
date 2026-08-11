@@ -1,71 +1,27 @@
-# 📊 Excel Sales & Finance Analysis
+# AtliQ Hardwares Sales & Financial Analytics (Excel & Power Pivot)
 
-A comprehensive Sales and Finance reporting project built using **Microsoft Excel**, **Power Query**, **Power Pivot**, and **DAX**.
+## 📊 Project Overview
+This portfolio project provides a comprehensive analysis of AtliQ Hardwares' sales and financial performance across global markets for the fiscal years 2019, 2020, and 2021. The objective is to evaluate historical sales trends, track gross margins, and analyze target variances to support strategic decision-making.
 
----
+*Note: Raw data files are omitted for confidentiality. The data model, DAX measures, and final reports are documented below.*
 
-## 📁 Reports
+## 🗄️ Data Model
+The project uses a standard Star Schema optimized in Excel Power Pivot.
+* **Fact Tables:** `fact_sales_monthly` (transactional data), `ns_targets_2021` (benchmark data)
+* **Dimension Tables:** `dim_customer`, `dim_market`, `dim_product`, `dim_date`
 
-| Report | Description |
-|--------|-------------|
-| [Customer Performance Report](reports/Customer%20Performance%20Report.pdf) | Customer-wise sales performance analysis |
-| [Market Performance vs Target Report](reports/Market%20Performance%20vs%20Target%20Report.pdf) | Comparison of market performance against sales targets |
-| [P&L Statement by Fiscal Year](reports/P%26L%20Statement%20by%20Fiscal%20Year.pdf) | Profit & Loss breakdown by fiscal year |
-| [P&L Statement by Months](reports/P%26L%20Statement%20by%20Months.pdf) | Monthly Profit & Loss analysis |
-| [P&L Statement by Markets](reports/P%26L%20Statement%20by%20Markets.pdf) | Market-wise Profit & Loss statement |
+## 🧮 Core Business Logic (DAX)
+To maintain a robust and easily explainable model, core calculations utilize fundamental DAX functions:
+* **Net Sales:** `SUM(fact_sales_monthly[net_sales_amount])`
+* **Time Intelligence (NetSales 21):** `CALCULATE([Net Sales], dim_date[FY]="2021")`
+* **Year-Over-Year Growth (21 vs 20):** `DIVIDE([NetSales 21], [NetSales 20], 0)`
+* **Target Variance (%):** `DIVIDE([2021 - Target], [target 21], 0)`
 
----
+## 📈 Key Business Insights
+* **Revenue Scaling:** Net sales grew from 87.5M INR in 2019 to 598.9M INR in 2021.
+* **Profitability:** Gross Margin percentage contracted slightly from 41.4% in 2019 to 37.3% in 2021.
+* **Market Target Variance:** Globally, the market missed the 2021 net sales target by -9.17% (a 54.9M INR deficit).
 
-## 📈 Sales Report
-
-- **Project Objective:**
-    1. Create a [Customer Performance Report](reports/Customer%20Performance%20Report.pdf)
-    2. Conduct a comprehensive comparison between [Market Performance and Sales Targets](reports/Market%20Performance%20vs%20Target%20Report.pdf)
-
-- **Purpose of Sales Analytics:** Empower businesses to monitor and evaluate their sales activities and performance.
-
-- **Importance of Analyzing Sales Data:** Identify sales patterns and track key performance indicators (KPIs).
-
-- **Role of Reports:** Determine effective customer discounts, facilitate negotiations with consumers, and identify potential business expansion opportunities in promising countries.
-
----
-
-## 💰 Finance Report
-
-- **Project Objective:**
-    1. Create Profit and Loss (P&L) reports by [Fiscal Year](reports/P%26L%20Statement%20by%20Fiscal%20Year.pdf) & [Months](reports/P%26L%20Statement%20by%20Months.pdf)
-    2. Create Profit and Loss (P&L) reports by [Markets](reports/P%26L%20Statement%20by%20Markets.pdf)
-
-- **Purpose of Finance Analytics:** Evaluation of financial performance, support decision-making, and facilitate communication with stakeholders.
-
-- **Importance of Analyzing Finance Data:** Aid in benchmarking against industry peers and previous periods. Foundation for budgeting and forecasting.
-
-- **Role of Reports:** Align financial planning with strategic goals and instill confidence in the organization's financial outlook.
-
----
-
-## 🛠️ Technical Skills
-- [x] Proficiency in ETL methodology (Extract, Transform, Load)
-- [x] Skills to generate a date table using Power Query
-- [x] Ability to derive fiscal months and quarters
-- [x] Establishing data model relationships with Power Pivot
-- [x] Proficiency in incorporating supplementary data into an existing data model
-- [x] Utilizing DAX to create calculated columns
-
-## 🤝 Soft Skills
-- [x] Refined understanding of Sales & Finance Reports
-- [x] Designing user-centric reports with empathy in mind
-- [x] Optimization of report generation through meticulous fine-tuning
-- [x] Developing a systematic approach to devising a report building plan
-
----
-
-## 👨‍💻 Author
-
-**Syed Aleem**  
-
----
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
+## 📂 Repository Structure
+* `Reports/`: Contains PDF outputs of Customer Performance, Market vs Target, and P&L Statements.
+* `Model/`: Contains screenshots of the Star Schema and Measure management window.
